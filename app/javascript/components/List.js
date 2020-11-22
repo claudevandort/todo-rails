@@ -1,10 +1,9 @@
-import React, {useState} from 'react'
-import tasksData from '../data/listData'
+import React, {useState, useEffect} from 'react'
 import Listtem from './ListItem'
 import NewItem from './NewItem'
 
 export default function List() {
-  const [tasks, setTasks] = useState(tasksData)
+  const [tasks, setTasks] = useState([])
   const handleChange = (id, name, value) => {
     setTasks(
       tasks.map(item => {
@@ -19,6 +18,11 @@ export default function List() {
   const handleDeleteItem = (id) => {
     setTasks(tasks.filter(item => item.id !== id))
   }
+  useEffect(() => {
+    fetch("/items.json")
+      .then(res => res.json())
+      .then(result => setTasks(result.items))
+  }, [])
   return (
     <div className="container">
       <div className="row">

@@ -38,7 +38,7 @@ export default function ListItem(props) {
           className="form-control"
           style={disabled}
           onClick={toggleEdit}
-          value={`${text} ${done ? '✅' : ''}`}>
+          value={`${text}${done ? ' ✅' : ''}`}>
         </input>
       }
       <div class="input-group-append">
