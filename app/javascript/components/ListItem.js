@@ -16,8 +16,8 @@ export default function ListItem(props) {
 
   return (
     <div key={id} className="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
+      <div className="input-group-prepend">
+        <div className="input-group-text">
           <input
             type="checkbox"
             checked={done}
@@ -38,10 +38,11 @@ export default function ListItem(props) {
           className="form-control"
           style={disabled}
           onClick={toggleEdit}
+          readOnly={true}
           value={`${text}${done ? ' ✅' : ''}`}>
         </input>
       }
-      <div class="input-group-append">
+      <div className="input-group-append">
         <button
           className="btn btn-light"
           onClick={() => props.handleDeleteItem(id)}>&times;</button>

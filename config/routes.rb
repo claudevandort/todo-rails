@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   root 'pages#index'
-  get 'items', to: 'pages#items'
+  resources :items, only: [:index, :create]
 end

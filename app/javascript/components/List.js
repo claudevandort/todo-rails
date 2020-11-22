@@ -14,6 +14,13 @@ export default function List() {
   }
   const handleNewItem = (item) => {
     setTasks([ ...tasks, {id: tasks[tasks.length-1].id+1, ...item} ])
+    const options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({item})
+    }
+    fetch('/items.json', options)
+      .then(res => console.log(res))
   }
   const handleDeleteItem = (id) => {
     setTasks(tasks.filter(item => item.id !== id))
