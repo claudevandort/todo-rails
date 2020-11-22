@@ -24,6 +24,12 @@ export default function List() {
   }
   const handleDeleteItem = (id) => {
     setTasks(tasks.filter(item => item.id !== id))
+    const options = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
+    }
+    fetch(`/items/${id}.json`, options)
+      .then(res => console.log(res))
   }
   useEffect(() => {
     fetch("/items.json")

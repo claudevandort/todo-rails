@@ -16,6 +16,19 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    item = Item.find params[:id]
+    if item.present?
+      if item.destroy
+        head :ok
+      else
+        head :internal_server_error
+      end
+    else
+      head :not_found
+    end
+  end
+
   def set_items
     @items = @list.items
   end
