@@ -11,6 +11,13 @@ export default function List() {
         return item
       })
     )
+    const options = {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({item: {[name]: value}})
+    }
+    fetch(`/items/${id}.json`, options)
+      .then(res => console.log(res))
   }
   const handleNewItem = (item) => {
     setTasks([ ...tasks, {id: tasks[tasks.length-1].id+1, ...item} ])

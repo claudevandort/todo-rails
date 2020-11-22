@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_list, only: [:index, :create]
   before_action :set_items, only: [:index]
+  before_action :set_item, only: [:update]
   def index
     render json: {items: @items}
   end
@@ -10,6 +11,14 @@ class ItemsController < ApplicationController
     item = Item.new(item_params)
     item.list_id = @list.id
     if item.save
+      head :ok
+    else
+      head :bad_request
+    end
+  end
+
+  def update
+    if @item.update(item_params)
       head :ok
     else
       head :bad_request
@@ -31,6 +40,10 @@ class ItemsController < ApplicationController
 
   def set_items
     @items = @list.items
+  end
+
+  def set_item
+    @item = Item.find params[:id]
   end
 
   def set_list
